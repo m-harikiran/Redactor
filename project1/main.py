@@ -4,6 +4,8 @@ import os
 
 
 def main(input_parameters):
+    # print(input_parameters)
+    redactor.statsFile(input_parameters.stats)
 
 
 if __name__ == '__main__':

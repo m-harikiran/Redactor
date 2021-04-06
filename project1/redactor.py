@@ -2,6 +2,7 @@ import os
 import nltk
 import re
 import glob
+from commonregex import CommonRegex
 
 
 # Function used to setup status file to log the redation process
@@ -124,5 +125,23 @@ def redactNames(data, args):
                 count += 1
     message = 'Sucessfully redacted {} Names'.format(
         count)  # Updating the redaction status in log
+    updateStatusLog(message, args.stats)
+    return data
+
+# Function to redact dates
+
+
+def redactDates(data, args):
+
+    parsed_data = CommonRegex(data)  # Parsing the data using common regex
+
+    matched_dates = parsed_data.dates  # Finding all the dates available in data
+
+    for date in matched_dates:
+        data = re.sub('\\b{}\\b'.format(date),
+                      '\u2588'*len(date), data)  # Replacing the names with block character
+
+    message = 'Sucessfully redacted {} Dates'.format(
+        len(matched_dates))  # Updating the redaction status in log
     updateStatusLog(message, args.stats)
     return data

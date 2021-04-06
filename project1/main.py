@@ -20,7 +20,10 @@ def main(input_parameters):
 
     # Redacting Names
     redact_names = redactor.redactNames(redact_genders, args)
-    print(args.phones, redact_names)
+
+    # Redacting Dates
+    redact_dates = redactor.redactDates(redact_names, args)
+    print(args.phones, redact_dates)
 
 
 if __name__ == '__main__':

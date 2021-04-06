@@ -3,6 +3,7 @@ import nltk
 import re
 import glob
 from commonregex import CommonRegex
+from nltk.corpus import wordnet
 
 
 # Function used to setup status file to log the redation process
@@ -147,3 +148,37 @@ def redactDates(data, args):
     return data
 
 # Function to redact words with similar meaning
+
+
+def redactConcept(data, args):
+
+    count = 0
+
+    if args.concept:
+        # Extracting the concept words
+        concept_list = nltk.flatten(args.concept)
+        concept_syns = []
+
+        for concept in concept_list:
+            syns = wordnet.synsets(concept)
+
+            concept_syns.append([i.lemma_names() for i in syns])
+
+        tokenized_data = nltk.sent_tokenize(
+            data)  # Splitting data into sentences
+
+        # Extracting all synonyms
+        concept_syns = set(nltk.flatten(concept_syns))
+        print(concept_syns)
+        for sentences in tokenized_data:
+            for synonyms in concept_syns:
+                # Redacting the sentences with the word similar to concept word
+                if re.search('\\b{}'.format(synonyms), sentences, re.IGNORECASE):
+                    data = data.replace(sentences, len(sentences)*'\u2588')
+                    count += 1
+                    break
+
+    message = 'Sucessfully redacted {} sentences where words related to concept are present'.format(
+        count)  # Updating the redaction status in log
+    updateStatusLog(message, args.stats)
+    return data

@@ -23,7 +23,11 @@ def main(input_parameters):
 
     # Redacting Dates
     redact_dates = redactor.redactDates(redact_names, args)
-    print(args.phones, redact_dates)
+
+    # Redacting words with similar meaning
+    redact_concept = redactor.redactConcept(redact_dates, args)
+
+    print(args.concept, redact_concept)
 
 
 if __name__ == '__main__':

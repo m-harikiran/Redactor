@@ -11,6 +11,10 @@ def main(input_parameters):
     # Reading the data from the input files
     docs_data = redactor.fetchDocs(input_parameters)
 
+    # Redacting Phone numbers
+    redact_phones = redactor.redactPhone(
+        docs_data[0], input_parameters)
+
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()  # Creating an argument parser object

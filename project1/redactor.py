@@ -45,3 +45,26 @@ def fetchDocs(args):
                 message = "Cannot read data from '{}'".format(j[13:])
                 updateStatusLog(message, args.stats)
     return docs_data
+
+
+# Function to redact phone numbers.
+
+
+def redactPhone(data, args):
+    matched_phones = []
+
+    if args.phones:
+        pattern = '\\b[+]?[0-9]{0,3}[ ]?[(]?[0-9]{3}[)]?[- ]?[0-9]{3}[- ]?[0-9]{4}\\b'
+        matched_phones = re.findall(pattern, data)
+
+        for i in matched_phones:
+            print(i)
+            # data = data.replace(i, len(i)*'\u2588')
+            data = re.sub('\\b{}\\b'.format(
+                re.escape(i.strip())), '\u2588'*len(i), data)
+
+    message = 'Sucessfully redacted {} phone numbers'.format(
+        len(matched_phones))
+    updateStatusLog(message, args.stats)
+
+    return data

@@ -28,7 +28,7 @@ def main(input_parameters):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()  # Creating an argument parser object
-    parser.add_argument("--input", type=str, required=True, nargs="*", action="append",
+    parser.add_argument("--input", type=str, required=True, nargs="+", action="append",
                         help="Names of files to be redacted")  # Adding optinal argument --inputs
     parser.add_argument("--names", required=False, action="store_true",
                         help="Specify to redact names present in the documents")  # Adding optinal argument --names
@@ -42,6 +42,8 @@ if __name__ == '__main__':
                         help="Path to store redacted documents")  # Adding optinal argument --output
     parser.add_argument("--stats", type=str, required=False, default="stdout",
                         help="Name of the status file")  # Adding optinal argument --stats
+    parser.add_argument("--concept", type=str, required=False, nargs="+", action="append",
+                        help="Redact similar words to the given concept")  # Adding optinal argument --concept
 
     # Parsing the arguments to check if the condition if conditions is not met this will throw an error
     args = parser.parse_args()

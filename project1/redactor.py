@@ -145,3 +145,5 @@ def redactDates(data, args):
         len(matched_dates))  # Updating the redaction status in log
     updateStatusLog(message, args.stats)
     return data
+
+# Function to redact words with similar meaning

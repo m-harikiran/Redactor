@@ -1,7 +1,0 @@
-************ Redaction Status of Documents ************
-Successfully read data from '1.txt'
-Sucessfully redacted 6 phone numbers
-Sucessfully redacted 2 words related to gender identity
-Sucessfully redacted 3 Names
-Sucessfully redacted 3 Dates
-Sucessfully redacted 4 sentences where words related to concept are present

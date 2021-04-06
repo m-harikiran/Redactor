@@ -14,7 +14,7 @@ def statsFile(args):
     statusLog = open(
         os.getcwd()+"/project_docs/redaction_logs/"+args, 'w')  # Opening a file
     statusLog.write(
-        '************ Redaction Status of Documents ************\n')  # Writing a line to file
+        '******************************** Redaction Status of Documents ********************************\n')  # Writing a line to file
     statusLog.close()  # Closing the file
 
 
@@ -26,6 +26,16 @@ def updateStatusLog(message, args):
         os.getcwd()+"/project_docs/redaction_logs/"+args, 'a')  # Opening a file to append data
     statusLog.write('{}\n'.format(message))  # Writing a line to file
     statusLog.close()  # Closing the file
+
+
+# Function to write redacted data to new file withe extension .redacted
+
+def redactedDoc(message, out_path):
+
+    redactDoc = open(
+        os.getcwd()+"/project_docs/{}/{}.redacted".format(out_path, message[1]), 'w')  # Opening a file
+    redactDoc.write(message[0])  # Writing a line to file
+    redactDoc.close()  # Closing the file
 
 
 # Function to extract data from the documents to be redacted.
@@ -41,7 +51,8 @@ def fetchDocs(args):
         for j in glob.glob('project_docs/'+i):
             if j[-4:] == '.txt':  # Verifying if the input file is text or not
                 # Reading data from text files
-                docs_data.append(open(j).read())
+                # Appending file data an dits name
+                docs_data.append((open(j).read(), j[j.rfind('/')+1:-4]))
                 message = "Successfully read data from '{}'".format(
                     j[13:])  # Updating status log
                 updateStatusLog(message, args.stats)
@@ -169,7 +180,7 @@ def redactConcept(data, args):
 
         # Extracting all synonyms
         concept_syns = set(nltk.flatten(concept_syns))
-        print(concept_syns)
+
         for sentences in tokenized_data:
             for synonyms in concept_syns:
                 # Redacting the sentences with the word similar to concept word

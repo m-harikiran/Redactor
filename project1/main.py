@@ -10,24 +10,34 @@ def main(input_parameters):
 
     # Reading the data from the input files
     docs_data = redactor.fetchDocs(input_parameters)
+    for doc_data in docs_data:
 
-    # Redacting Phone numbers
-    redact_phones = redactor.redactPhone(
-        docs_data[0], input_parameters)
+        redactor.updateStatusLog(
+            '\n************************ Starting redaction of {}.txt ************************'.format(doc_data[1]), args.stats)
+        # Redacting Phone numbers
+        redact_phones = redactor.redactPhone(
+            doc_data[0], input_parameters)
 
-    # Redacting words related to gender
-    redact_genders = redactor.redactGender(redact_phones, input_parameters)
+        # Redacting words related to gender
+        redact_genders = redactor.redactGender(redact_phones, input_parameters)
 
-    # Redacting Names
-    redact_names = redactor.redactNames(redact_genders, args)
+        # Redacting Names
+        redact_names = redactor.redactNames(redact_genders, args)
 
-    # Redacting Dates
-    redact_dates = redactor.redactDates(redact_names, args)
+        # Redacting Dates
+        redact_dates = redactor.redactDates(redact_names, args)
 
-    # Redacting words with similar meaning
-    redact_concept = redactor.redactConcept(redact_dates, args)
+        # Redacting words with similar meaning
+        redact_concept = redactor.redactConcept(redact_dates, args)
 
-    print(args.concept, redact_concept)
+        redactor.redactedDoc((redact_concept, doc_data[1]), args.output)
+
+        redactor.updateStatusLog(
+            '''\n************************ Successfully redacted {}.txt and 
+            saved in \n\t\t/project_docs/{} as {}.redacted ************************'''.format(doc_data[1],
+                                                                                              args.output, doc_data[1]), args.stats)
+
+    #print(args.concept, docs_data)
 
 
 if __name__ == '__main__':

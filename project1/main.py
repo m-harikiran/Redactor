@@ -4,8 +4,12 @@ import os
 
 
 def main(input_parameters):
-    # print(input_parameters)
+
+    # Creating file to log redaction process
     redactor.statsFile(input_parameters.stats)
+
+    # Reading the data from the input files
+    docs_data = redactor.fetchDocs(input_parameters)
 
 
 if __name__ == '__main__':

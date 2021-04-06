@@ -15,6 +15,9 @@ def main(input_parameters):
     redact_phones = redactor.redactPhone(
         docs_data[0], input_parameters)
 
+    # Redacting words related to gender
+    redact_genders = redactor.redactGender(redact_phones, input_parameters)
+
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()  # Creating an argument parser object

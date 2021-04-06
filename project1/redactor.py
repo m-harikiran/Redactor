@@ -68,3 +68,25 @@ def redactPhone(data, args):
     updateStatusLog(message, args.stats)
 
     return data
+
+
+# Function to redact words related to gender
+
+def redactGender(data, args):
+    gender_list = ['HE', 'SHE',	'HIM', 'HER', 'HIS', 'HERS', 'HIMSELF', 'HERSELF', 'BOYFRIEND',
+                   'GIRLFRIEND', 'HUSBAND', 'WIFE', 'SISTER', 'BROTHER', 'SON', 'DAUGHTER', 'GIRL',
+                   'BOY', 'MALE', 'FEMALE', 'MAN', 'MEN', 'WOMAN', 'WOMEN', 'MOTHER', 'FATHER']
+    count = 0
+
+    if args.genders:
+        tokenized_data = nltk.word_tokenize(data)
+        for words in tokenized_data:
+            if words.upper() in gender_list:
+                data = re.sub('\\b{}\\b'.format(words),
+                              '\u2588'*len(words), data)
+                count += 1
+
+    message = 'Sucessfully redacted {} words related to gender identity'.format(
+        count)
+    updateStatusLog(message, args.stats)
+    return data

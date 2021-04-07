@@ -14,9 +14,9 @@ Sucessfully redacted 0 sentences where words related to concept are present
 		/project_docs/redacted_documents as 2.redacted ************************
 
 ************************ Starting redaction of 1.txt ************************
-Sucessfully redacted 0 phone numbers
+Sucessfully redacted 8 phone numbers
 Sucessfully redacted 0 words related to gender identity
-Sucessfully redacted 8 Names
+Sucessfully redacted 0 Names
 Sucessfully redacted 0 Dates
 Sucessfully redacted 0 sentences where words related to concept are present
 

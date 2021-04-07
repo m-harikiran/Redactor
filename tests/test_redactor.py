@@ -96,3 +96,22 @@ def testFetchDocs():
     assert len(data[0][0]) > 1  # Verifying if the read file has data
     # Verifying the name of the file from which data is read
     assert data[0][1] == 'test'
+
+# Testing the method used to redact Names
+
+
+def testRedactNames():
+    parser = argparse.ArgumentParser()  # Creating an argument parser object
+    parser.add_argument("--names", required=False, action="store_true")
+    parser.add_argument("--stats", type=str, required=False,
+                        default="stdout")  # Adding optinal argument --stats
+    args = parser.parse_args(
+        "--names --stats ../test_project/testLog".split())
+
+    redactor.redactNames(data[0][0], args)
+
+    # log file must be updated with this message as there are 9 names to be redacted in test document
+    expected = 'Sucessfully redacted 9 Names'
+
+    assert open(
+        'project_docs/test_project/testLog').read().splitlines()[-1] == expected  # Verifying the contents of the log file w.r.t expected

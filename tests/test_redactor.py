@@ -36,7 +36,6 @@ def argParser():
 
 # Testing creation of status file
 
-
 def testStatusFile():
 
     # Calling the method to create testlog file
@@ -44,3 +43,16 @@ def testStatusFile():
 
     # Verifying if the testlog file is created or not
     assert os.path.isfile('project_docs/test_project/testlog')
+
+
+# Testing the method used to updated status log
+
+def testUpdateStatusLog():
+    # Message to be writted to status log
+    message = 'Testing status updating method'
+
+    # Updating the status log
+    redactor.updateStatusLog(message, '../test_project/testLog')
+
+    assert open(
+        'project_docs/test_project/testlog').read().splitlines()[-1] == message  # Verifying the updated message

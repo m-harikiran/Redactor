@@ -116,7 +116,7 @@ def testRedactNames():
     assert open(
         'project_docs/test_project/testLog').read().splitlines()[-1] == expected  # Verifying the contents of the log file w.r.t expected
 
-# Testing the metho dused to redact Phone Numbers
+# Testing the method used to redact Phone Numbers
 
 
 def testRedactPhones():
@@ -129,8 +129,27 @@ def testRedactPhones():
 
     redactor.redactPhone(data[0][0], args)
 
-    # log file must be updated with this message as there are 9 names to be redacted in test document
+    # log file must be updated with this message as there are 8 numbers to be redacted in test document
     expected = 'Sucessfully redacted 8 phone numbers'
+
+    assert open(
+        'project_docs/test_project/testLog').read().splitlines()[-1] == expected  # Verifying the contents of the log file w.r.t expected
+
+
+# Testing the method used to redact gender related words
+
+def testRedactGenders():
+    parser = argparse.ArgumentParser()  # Creating an argument parser object
+    parser.add_argument("--genders", required=False, action="store_true")
+    parser.add_argument("--stats", type=str, required=False,
+                        default="stdout")  # Adding optinal argument --stats
+    args = parser.parse_args(
+        "--genders --stats ../test_project/testLog".split())
+
+    redactor.redactGender(data[0][0], args)
+
+    # log file must be updated with this message as there are 17 words related to gender in test document
+    expected = 'Sucessfully redacted 17 words related to gender identity'
 
     assert open(
         'project_docs/test_project/testLog').read().splitlines()[-1] == expected  # Verifying the contents of the log file w.r.t expected

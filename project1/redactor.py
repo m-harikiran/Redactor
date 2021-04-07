@@ -92,7 +92,7 @@ def redactPhone(data, args):
 def redactGender(data, args):
     gender_list = ['HE', 'SHE',	'HIM', 'HER', 'HIS', 'HERS', 'HIMSELF', 'HERSELF', 'BOYFRIEND',
                    'GIRLFRIEND', 'HUSBAND', 'WIFE', 'SISTER', 'BROTHER', 'SON', 'DAUGHTER', 'GIRL',
-                   'BOY', 'MALE', 'FEMALE', 'MAN', 'MEN', 'WOMAN', 'WOMEN', 'MOTHER', 'FATHER', 'MRS.', 'MR.', 'MISS.']  # List of gender related words
+                   'BOY', 'MALE', 'FEMALE', 'MAN', 'MEN', 'WOMAN', 'WOMEN', 'MOTHER', 'FATHER']  # List of gender related words
     count = 0
 
     if args.genders:

@@ -1,0 +1,25 @@
+******************************** Redaction Status of Documents ********************************
+Successfully read data from '2.txt'
+Successfully read data from '1.txt'
+
+************************ Starting redaction of 2.txt ************************
+Sucessfully redacted 0 phone numbers
+Sucessfully redacted 0 words related to gender identity
+Sucessfully redacted 0 Names
+Sucessfully redacted 0 Dates
+Sucessfully redacted 0 sentences where words related to concept are present
+
+************************ Successfully redacted 2.txt and 
+            saved in 
+		/project_docs/redacted_documents as 2.redacted ************************
+
+************************ Starting redaction of 1.txt ************************
+Sucessfully redacted 0 phone numbers
+Sucessfully redacted 0 words related to gender identity
+Sucessfully redacted 8 Names
+Sucessfully redacted 0 Dates
+Sucessfully redacted 0 sentences where words related to concept are present
+
+************************ Successfully redacted 1.txt and 
+            saved in 
+		/project_docs/redacted_documents as 1.redacted ************************

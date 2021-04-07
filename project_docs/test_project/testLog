@@ -1,2 +1,4 @@
 ******************************** Redaction Status of Documents ********************************
 Testing status updating method
+Successfully read data from '../tests/test.txt'
+Sucessfully redacted 9 Names

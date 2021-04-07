@@ -71,7 +71,7 @@ def redactPhone(data, args):
 
     if args.phones:
         # Regex Pattern to find phone numbers
-        pattern = '\\b[+]?[0-9]{0,3}[ ]?[(]?[0-9]{3}[)]?[- ]?[0-9]{3}[- ]?[0-9]{4}\\b'
+        pattern = '\\b[+]?[0-9]{0,3}[ -]?[(]?[0-9]{3}[)]?[- ]?[0-9]{3}[- ]?[0-9]{4}\\b'
         # Finding all the phone numbers
         matched_phones = re.findall(pattern, data)
 
@@ -92,7 +92,7 @@ def redactPhone(data, args):
 def redactGender(data, args):
     gender_list = ['HE', 'SHE',	'HIM', 'HER', 'HIS', 'HERS', 'HIMSELF', 'HERSELF', 'BOYFRIEND',
                    'GIRLFRIEND', 'HUSBAND', 'WIFE', 'SISTER', 'BROTHER', 'SON', 'DAUGHTER', 'GIRL',
-                   'BOY', 'MALE', 'FEMALE', 'MAN', 'MEN', 'WOMAN', 'WOMEN', 'MOTHER', 'FATHER']  # List of gender related words
+                   'BOY', 'MALE', 'FEMALE', 'MAN', 'MEN', 'WOMAN', 'WOMEN', 'MOTHER', 'FATHER', 'MRS.', 'MR.', 'MISS.']  # List of gender related words
     count = 0
 
     if args.genders:
@@ -144,14 +144,16 @@ def redactNames(data, args):
 
 
 def redactDates(data, args):
+    matched_dates = []
 
-    parsed_data = CommonRegex(data)  # Parsing the data using common regex
+    if args.dates:
+        parsed_data = CommonRegex(data)  # Parsing the data using common regex
 
-    matched_dates = parsed_data.dates  # Finding all the dates available in data
+        matched_dates = parsed_data.dates  # Finding all the dates available in data
 
-    for date in matched_dates:
-        data = re.sub('\\b{}\\b'.format(date),
-                      '\u2588'*len(date), data)  # Replacing the names with block character
+        for date in matched_dates:
+            data = re.sub('\\b{}\\b'.format(date),
+                          '\u2588'*len(date), data)  # Replacing the names with block character
 
     message = 'Sucessfully redacted {} Dates'.format(
         len(matched_dates))  # Updating the redaction status in log

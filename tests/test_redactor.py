@@ -36,6 +36,7 @@ def argParser():
 
 # Testing creation of status file
 
+
 def testStatusFile():
 
     # Calling the method to create testlog file
@@ -57,6 +58,8 @@ def testUpdateStatusLog():
     assert open(
         'project_docs/test_project/testlog').read().splitlines()[-1] == message  # Verifying the updated message
 
+# Testing the method used to write data to redacted files
+
 
 def testRedactedDoc():
 
@@ -70,3 +73,26 @@ def testRedactedDoc():
 
     assert open(
         'project_docs/test_project/test.redacted').read().splitlines()[-1] == message[0]  # Verifying the contents of the redacted file
+
+
+# Testing the method to fetch or read data from the input files.
+
+def testFetchDocs():
+    parser = argparse.ArgumentParser()  # Creating an argument parser object
+    # Adding optinal argument --inputs
+    parser.add_argument("--input", type=str, required=True,
+                        nargs="+", action="append")
+    parser.add_argument("--stats", type=str, required=False,
+                        default="stdout")  # Adding optinal argument --stats
+    args = parser.parse_args(
+        "--input ../tests/test.txt --stats ../test_project/testLog".split())
+
+    # Calling the method to fetch data from documents
+    global data
+    data = redactor.fetchDocs(args)
+
+    # Verifying if the the return type of method is list or not
+    assert type(data) == list
+    assert len(data[0][0]) > 1  # Verifying if the read file has data
+    # Verifying the name of the file from which data is read
+    assert data[0][1] == 'test'

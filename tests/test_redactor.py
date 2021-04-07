@@ -56,3 +56,17 @@ def testUpdateStatusLog():
 
     assert open(
         'project_docs/test_project/testlog').read().splitlines()[-1] == message  # Verifying the updated message
+
+
+def testRedactedDoc():
+
+    # Data to writted in redacted file and it's name
+    message = ('\u2588 Testing redactedDoc method \u2588', 'test')
+
+    redactor.redactedDoc(message, 'test_project')  # Calling method redactedDoc
+
+    # Verifying if the file with .redacted extension id created or not
+    assert os.path.isfile('project_docs/test_project/test.redacted')
+
+    assert open(
+        'project_docs/test_project/test.redacted').read().splitlines()[-1] == message[0]  # Verifying the contents of the redacted file

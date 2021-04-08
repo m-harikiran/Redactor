@@ -13,7 +13,7 @@ def main(input_parameters):
     for doc_data in docs_data:
 
         redactor.updateStatusLog(
-            '\n************************ Starting redaction of {}.txt ************************'.format(doc_data[1]), args.stats)
+            '\n******************************** Starting redaction of {}.txt ********************************'.format(doc_data[1]), args.stats)
         # Redacting Phone numbers
         redact_phones = redactor.redactPhone(
             doc_data[0], input_parameters)
@@ -33,9 +33,9 @@ def main(input_parameters):
         redactor.redactedDoc((redact_concept, doc_data[1]), args.output)
 
         redactor.updateStatusLog(
-            '''\n************************ Successfully redacted {}.txt and 
-            saved in \n\t\t/project_docs/{} as {}.redacted ************************'''.format(doc_data[1],
-                                                                                              args.output, doc_data[1]), args.stats)
+            '''\n*********************************** Successfully redacted {}.txt ***********************************
+************ saved redacted document in /project_docs/{} as {}.redacted ************'''.format(doc_data[1],
+                                                                                               args.output, doc_data[1]), args.stats)
 
     #print(args.concept, docs_data)
 

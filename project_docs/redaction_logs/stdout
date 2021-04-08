@@ -1,25 +1,34 @@
 ******************************** Redaction Status of Documents ********************************
-Successfully read data from '2.txt'
-Successfully read data from '1.txt'
+Successfully read data from 'JFK.txt'
+Successfully read data from 'Google_vs_Oracle.txt'
+Successfully read data from 'others/amistad_captives.txt'
 
-************************ Starting redaction of 2.txt ************************
+******************************** Starting redaction of JFK.txt ********************************
 Sucessfully redacted 0 phone numbers
 Sucessfully redacted 0 words related to gender identity
-Sucessfully redacted 0 Names
+Sucessfully redacted 314 Names
 Sucessfully redacted 0 Dates
 Sucessfully redacted 0 sentences where words related to concept are present
 
-************************ Successfully redacted 2.txt and 
-            saved in 
-		/project_docs/redacted_documents as 2.redacted ************************
+*********************************** Successfully redacted JFK.txt ***********************************
+************ saved redacted document in /project_docs/redacted_documents as JFK.redacted ************
 
-************************ Starting redaction of 1.txt ************************
+******************************** Starting redaction of Google_vs_Oracle.txt ********************************
 Sucessfully redacted 0 phone numbers
-Sucessfully redacted 17 words related to gender identity
-Sucessfully redacted 0 Names
+Sucessfully redacted 0 words related to gender identity
+Sucessfully redacted 237 Names
 Sucessfully redacted 0 Dates
 Sucessfully redacted 0 sentences where words related to concept are present
 
-************************ Successfully redacted 1.txt and 
-            saved in 
-		/project_docs/redacted_documents as 1.redacted ************************
+*********************************** Successfully redacted Google_vs_Oracle.txt ***********************************
+************ saved redacted document in /project_docs/redacted_documents as Google_vs_Oracle.redacted ************
+
+******************************** Starting redaction of amistad_captives.txt ********************************
+Sucessfully redacted 0 phone numbers
+Sucessfully redacted 0 words related to gender identity
+Sucessfully redacted 126 Names
+Sucessfully redacted 0 Dates
+Sucessfully redacted 0 sentences where words related to concept are present
+
+*********************************** Successfully redacted amistad_captives.txt ***********************************
+************ saved redacted document in /project_docs/redacted_documents as amistad_captives.redacted ************

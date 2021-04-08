@@ -153,3 +153,22 @@ def testRedactGenders():
 
     assert open(
         'project_docs/test_project/testLog').read().splitlines()[-1] == expected  # Verifying the contents of the log file w.r.t expected
+
+
+# Testing the method used to redact dates
+
+def testRedactDates():
+    parser = argparse.ArgumentParser()  # Creating an argument parser object
+    parser.add_argument("--dates", required=False, action="store_true")
+    parser.add_argument("--stats", type=str, required=False,
+                        default="stdout")  # Adding optinal argument --stats
+    args = parser.parse_args(
+        "--dates --stats ../test_project/testLog".split())
+
+    redactor.redactDates(data[0][0], args)
+
+    # log file must be updated with this message as there are 17 words related to gender in test document
+    expected = 'Sucessfully redacted 8 Dates'
+
+    assert open(
+        'project_docs/test_project/testLog').read().splitlines()[-1] == expected  # Verifying the contents of the log file w.r.t expected

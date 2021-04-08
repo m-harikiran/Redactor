@@ -1,0 +1,6 @@
+1. https://docs.python.org/3/library/argparse.html#nargs    |   Helped me with parsing arguments using command line
+2. https://docs.python.org/2/library/glob.html  |   Helped me in understanding glob library to find the files with matching input files pattern
+3. https://stackoverflow.com/questions/20290870/improving-the-extraction-of-human-names-with-nltk   |   Helped me in understanding the NLTK package for assigning named entity tags to words
+4. https://stackoverflow.com/questions/19258652/how-to-get-synonyms-from-nltk-wordnet-python    |   Helped me to understand and extract synonymsof a words
+5. https://pypi.org/project/commonregex/    |   Used this package to identify the different date Formats 
+6. https://regexr.com/3c53v | Used this website to vizualize and understand regex patterns

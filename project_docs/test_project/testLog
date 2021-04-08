@@ -4,4 +4,5 @@ Successfully read data from '../tests/test.txt'
 Sucessfully redacted 9 Names
 Sucessfully redacted 8 phone numbers
 Sucessfully redacted 17 words related to gender identity
+Sucessfully redacted 8 Dates
 Sucessfully redacted 4 sentences where words related to concept are present

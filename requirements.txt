@@ -1,0 +1,6 @@
+commonregex==1.5.4
+nltk==3.5
+pipenv==2020.11.15
+pytest==6.2.2
+regex==2020.6.8
+#argparse, os and glob are standard libraries in python3

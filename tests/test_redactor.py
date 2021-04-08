@@ -167,8 +167,29 @@ def testRedactDates():
 
     redactor.redactDates(data[0][0], args)
 
-    # log file must be updated with this message as there are 17 words related to gender in test document
+    # log file must be updated with this message as there are 8 dates in test document
     expected = 'Sucessfully redacted 8 Dates'
+
+    assert open(
+        'project_docs/test_project/testLog').read().splitlines()[-1] == expected  # Verifying the contents of the log file w.r.t expected
+
+# Testing the method used to redact sentences containing the words related to concept
+
+
+def testRedactConcept():
+    parser = argparse.ArgumentParser()  # Creating an argument parser object
+    # Adding optinal argument --concept
+    parser.add_argument("--concept", type=str,
+                        required=False, nargs="+", action="append")
+    parser.add_argument("--stats", type=str, required=False,
+                        default="stdout")  # Adding optinal argument --stats
+    args = parser.parse_args(
+        "--concept shot --stats ../test_project/testLog".split())
+
+    redactor.redactConcept(data[0][0], args)
+
+    # log file must be updated with this message as there are 4 sentences in test document containing the words related to concept 'shot'
+    expected = 'Sucessfully redacted 4 sentences where words related to concept are present'
 
     assert open(
         'project_docs/test_project/testLog').read().splitlines()[-1] == expected  # Verifying the contents of the log file w.r.t expected

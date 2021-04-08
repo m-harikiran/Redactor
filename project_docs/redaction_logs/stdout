@@ -5,30 +5,30 @@ Successfully read data from 'others/amistad_captives.txt'
 
 ******************************** Starting redaction of JFK.txt ********************************
 Sucessfully redacted 0 phone numbers
-Sucessfully redacted 0 words related to gender identity
-Sucessfully redacted 314 Names
-Sucessfully redacted 0 Dates
-Sucessfully redacted 0 sentences where words related to concept are present
+Sucessfully redacted 424 words related to gender identity
+Sucessfully redacted 316 Names
+Sucessfully redacted 62 Dates
+Sucessfully redacted 52 sentences where words related to concept are present
 
 *********************************** Successfully redacted JFK.txt ***********************************
 ************ saved redacted document in /project_docs/redacted_documents as JFK.redacted ************
 
 ******************************** Starting redaction of Google_vs_Oracle.txt ********************************
 Sucessfully redacted 0 phone numbers
-Sucessfully redacted 0 words related to gender identity
+Sucessfully redacted 2 words related to gender identity
 Sucessfully redacted 237 Names
-Sucessfully redacted 0 Dates
-Sucessfully redacted 0 sentences where words related to concept are present
+Sucessfully redacted 7 Dates
+Sucessfully redacted 3 sentences where words related to concept are present
 
 *********************************** Successfully redacted Google_vs_Oracle.txt ***********************************
 ************ saved redacted document in /project_docs/redacted_documents as Google_vs_Oracle.redacted ************
 
 ******************************** Starting redaction of amistad_captives.txt ********************************
 Sucessfully redacted 0 phone numbers
-Sucessfully redacted 0 words related to gender identity
+Sucessfully redacted 55 words related to gender identity
 Sucessfully redacted 126 Names
-Sucessfully redacted 0 Dates
-Sucessfully redacted 0 sentences where words related to concept are present
+Sucessfully redacted 5 Dates
+Sucessfully redacted 12 sentences where words related to concept are present
 
 *********************************** Successfully redacted amistad_captives.txt ***********************************
 ************ saved redacted document in /project_docs/redacted_documents as amistad_captives.redacted ************

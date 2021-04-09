@@ -238,3 +238,36 @@ This method is used to test method **redactPhones()** in **redactor.py**. In thi
 expected = 'Sucessfully redacted 8 phone numbers'
 assert open('project_docs/test_project/testLog').read().splitlines()[-1] == expected  # Verifying the contents of the log file w.r.t expected
 ```
+
+#### vii. testRedactGenders()
+
+This method is used to test method **redactGenders()** in **redactor.py**. IIn this, I am verifying if the count of the gender identification words to be redacted and the redacted words is equal or not.
+
+```python
+# log file must be updated with this message as there are 17 words related to gender in test document
+expected = 'Sucessfully redacted 17 words related to gender identity'
+assert open(
+	'project_docs/test_project/testLog').read().splitlines()[-1] == expected  # Verifying the contents of the log file w.r.t expected
+```
+
+#### viii. testRedactDates()
+
+This method is used to test method **redactDates()** in **redactor.py**. In this, I am verifying if the count of the dates to be redacted and the redacted dates is equal or not.
+
+```python
+# log file must be updated with this message as there are 8 dates in test document
+expected = 'Sucessfully redacted 8 Dates'
+assert open(
+	'project_docs/test_project/testLog').read().splitlines()[-1] == expected  # Verifying the contents of the log file w.r.t expected
+```
+
+#### ix. testRedactConcept()
+
+This method is used to test method **redactConcept()** in **redactor.py**. In this, I am verifying if the count of the sentences to be redacted and the redacted sentences is equal or not.
+
+```python
+# log file must be updated with this message as there are 4 sentences in test document containing the words related to concept 'shot'
+expected = 'Sucessfully redacted 4 sentences where words related to concept are present'
+assert open(
+	'project_docs/test_project/testLog').read().splitlines()[-1] == expected  # Verifying the contents of the log file w.r.t expected
+```

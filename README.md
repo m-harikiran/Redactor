@@ -65,9 +65,38 @@ These input paramentrs are passed to the methods imported from **redactor.py** f
 
 - Method **`redactor.statsFile(input_parameters.stats)`** is used to create redaction status log file
 - Method **`redactor.fetchDocs(input_parameters)`** is used to read the data from the input files
+
+The below methods are called for each input file
+
 - Method **`redactor.updateStatusLog(message, input_parameters.stats)`** is used to log updates in redaction satus log file
 - Method **`redactor.redactPhone(doc_data[0], input_parameters)`** is used to redact phone numbers
 - Method **`redactor.redactGender(redact_phones, input_parameters)`** is used to redact gender identification words
 - Method **`redactor.redactNames(redact_genders, input_parameters)`** is used to redact Names
 - Method **`redactor.redactConcept(redact_dates, input_parameters)`** is used to redact words similar to concept
 - Method **`redactor.redactedDoc((redact_concept, doc_data[1]), input_parameters.output)`** is used to write the redacted data into files with extension **'.redacted'**
+
+### 2. redactor.py
+
+This package is used by **main.py** to read, redact and write redacted data.
+
+#### i. statsFile(args)
+
+This method takes redaction status log file name as input parameters and creates a file with the given name in **'/project_docs/redaction_logs/'**.
+
+#### ii. updateStatusLog(message, args)
+
+This method takes message to be appened in redaction status log and status log file name as input parameters and then updated the status log with the message.
+
+#### III. fetchDocs(args)
+
+This method takes all the arguments passed from command line as parameters and then extracts the input file names or pattern to identify the the input files using **glob** library. The data from each fille and its name is added to tuple and this is appended to a list containing the data of all the files. If a file cannot be read the status is updated in status log file. Finally a list containing the tuples of data from file and it's name is returned.
+
+#### Iv. redactPhone(data, args)
+
+This method takes data from the file and command line input parameters and redacts the dates identified using the below regex pattern.
+
+```python
+pattern = '\\b[+]?[0-9]{0,3}[ -]?[(]?[0-9]{3}[)]?[- ]?[0-9]{3}[- ]?[0-9]{4}\\b'
+```
+
+All the identified dates are replacted with block charcter and the method returns redacted data if **--phone** flag is passed from the command line or else it returns the unredacted data.

@@ -208,3 +208,33 @@ assert os.path.isfile('project_docs/test_project/test.redacted')	# Verifying if 
 assert open(
 	'project_docs/test_project/test.redacted').read().splitlines()[-1] == message[0]  # Verifying the contents of the redacted file
 ```
+
+#### iv. testFetchDocs()
+
+This method is used to test method **fetchDocs()** in **redactor.py**. In this, I am verifying if the function returns list, length of the file which is read and its name.
+
+```python
+assert type(data) == list	# Verifying if the the return type of method is list or not
+assert len(data[0][0]) > 1	# Verifying if the read file has data
+assert data[0][1] == 'test'	# Verifying the name of the file from which data is read
+```
+
+#### v. testRedactNames()
+
+This method is used to test method **redactNames()** in **redactor.py**. In this, I am verifying if the count of the names to be redacted and the redacted names is equal or not.
+
+```python
+# log file must be updated with this message as there are 9 names to be redacted in test document
+expected = 'Sucessfully redacted 9 Names'
+assert open('project_docs/test_project/testLog').read().splitlines()[-1] == expected  # Verifying the contents of the log file w.r.t expected
+```
+
+#### vi. testRedactPhones()
+
+This method is used to test method **redactPhones()** in **redactor.py**. In this, I am verifying if the count of the phone numbers to be redacted and the redacted phones is equal or not.
+
+```python
+# log file must be updated with this message as there are 8 numbers to be redacted in test document
+expected = 'Sucessfully redacted 8 phone numbers'
+assert open('project_docs/test_project/testLog').read().splitlines()[-1] == expected  # Verifying the contents of the log file w.r.t expected
+```

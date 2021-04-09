@@ -179,3 +179,12 @@ redactDoc.close()  # Closing the file
 ### 3. test_redactor.py
 
 The package **test_redactor.py** has test cases defined as methods, that can be used for unit testing of methods defined in the package **redactor.py**. In order to test each method in **redactor.py**, first we need to import **redactor.py**. I am using **assert** in python to verify if the test condition is true or not. If the condition returns FALSE then assert statement will fail, which inturns fails the test case.
+
+#### i. testStatusFile()
+
+This method is used to test method **statsFile(args)** in **redactor.py**. In this, I am verifying if the log file created by **redactor.statusFile(args)** when it is called.
+
+```python
+redactor.statsFile('../test_project/testLog')	# Calling the method to create testlog file
+assert os.path.isfile('project_docs/test_project/testlog')	# Verifying if the testlog file is created or not
+```

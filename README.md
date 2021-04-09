@@ -188,3 +188,13 @@ This method is used to test method **statsFile(args)** in **redactor.py**. In th
 redactor.statsFile('../test_project/testLog')	# Calling the method to create testlog file
 assert os.path.isfile('project_docs/test_project/testlog')	# Verifying if the testlog file is created or not
 ```
+
+#### ii. testUpdateStatusLog()
+
+This method is used to test method **updateStatusLog()** in **redactor.py**. In this, I am verifying if the message that we have passed is updated in the log file or not.
+
+```python
+message = 'Testing status updating method'	# Message to be writted to status log
+redactor.updateStatusLog(message, '../test_project/testLog')	# Updating the status log
+assert open('project_docs/test_project/testlog').read().splitlines()[-1] == message  # Verifying the updated message
+```

@@ -51,7 +51,7 @@ def fetchDocs(args):
         for j in glob.glob('project_docs/'+i):
             if j[-4:] == '.txt':  # Verifying if the input file is text or not
                 # Reading data from text files
-                # Appending file data an dits name
+                # Appending the tuple containing file data and its name
                 docs_data.append((open(j).read(), j[j.rfind('/')+1:-4]))
                 message = "Successfully read data from '{}'".format(
                     j[13:])  # Updating status log
@@ -173,8 +173,10 @@ def redactConcept(data, args):
         concept_syns = []
 
         for concept in concept_list:
+            # Identifies the synonyms of words which has same meaning
             syns = wordnet.synsets(concept)
 
+            # Extracting the lemmatized names of the words similar to synonyms of the concept
             concept_syns.append([i.lemma_names() for i in syns])
 
         tokenized_data = nltk.sent_tokenize(

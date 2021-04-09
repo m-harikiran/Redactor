@@ -198,3 +198,13 @@ message = 'Testing status updating method'	# Message to be writted to status log
 redactor.updateStatusLog(message, '../test_project/testLog')	# Updating the status log
 assert open('project_docs/test_project/testlog').read().splitlines()[-1] == message  # Verifying the updated message
 ```
+
+#### iii. testRedactedDoc()
+
+This method is used to test method **redactedDoc()** in **redactor.py**. In this, I am verifying if the contents and the name of the redacted document.
+
+```python
+assert os.path.isfile('project_docs/test_project/test.redacted')	# Verifying if the file with .redacted extension id created or not
+assert open(
+	'project_docs/test_project/test.redacted').read().splitlines()[-1] == message[0]  # Verifying the contents of the redacted file
+```

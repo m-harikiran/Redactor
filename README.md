@@ -99,7 +99,7 @@ This method takes data from the file and command line input parameters and redac
 pattern = '\\b[+]?[0-9]{0,3}[ -]?[(]?[0-9]{3}[)]?[- ]?[0-9]{3}[- ]?[0-9]{4}\\b'
 ```
 
-All the identified dates are replacted with block charcter and the method returns redacted data if **--phone** flag is passed from the command line or else it returns the unredacted data.
+All the identified dates are replaced with block charcters and the method returns redacted data if **--phone** flag is passed from the command line or else it returns the unredacted data.
 
 #### v. redactGender(data, args)
 
@@ -111,9 +111,9 @@ gender_list = ['HE', 'SHE',	'HIM', 'HER', 'HIS', 'HERS', 'HIMSELF', 'HERSELF', '
                    'BOY', 'MALE', 'FEMALE', 'MAN', 'MEN', 'WOMAN', 'WOMEN', 'MOTHER', 'FATHER']
 ```
 
-All the identified gender words are replacted with block charcter and the method returns redacted data if **--genders** flag is passed from the command line or else it returns the unredacted data.
+All the identified gender words are replaced with block charcters and the method returns redacted data if **--genders** flag is passed from the command line or else it returns the unredacted data.
 
-#### v. redactNames(data, args)
+#### vi. redactNames(data, args)
 
 This method takes data returned by the above and command line input parameters and redacts the names which are identified using the nltk package.
 
@@ -132,16 +132,41 @@ This method takes data returned by the above and command line input parameters a
                 name = ' '.join([i[0] for i in chk])
 ```
 
-All the identified names are replacted with block charcter and the method returns redacted data if **--names** flag is passed from the command line or else it returns the unredacted data.
+All the identified names are replaced with block charcters and the method returns redacted data if **--names** flag is passed from the command line or else it returns the unredacted data.
 
-#### vi. redactDates(data, args)
+#### vii. redactDates(data, args)
 
 This method takes data returned by the above and command line input parameters and redacts the dates which are identiffied using **commonregex** package.
 
 ```python
         parsed_data = CommonRegex(data)  # Parsing the data using common regex
-
         matched_dates = parsed_data.dates  # Finding all the dates available in data
 ```
 
-All the identified dates are replacted with block charcter and the method returns redacted data if **--dates** flag is passed from the command line or else it returns the unredacted data.
+All the identified dates are replaced with block charcters and the method returns redacted data if **--dates** flag is passed from the command line or else it returns the unredacted data.
+
+#### viii. redactConcept(data, args)
+
+This method takes data returned by the above and command line input parameters and redacts the entire sentence where the words which have similar meaning to that of the given concept word is identified.
+
+```python
+            # Identifies the synonyms of words which has same meaning
+            syns = wordnet.synsets(concept)
+            # Extracting the lemmatized names of the words similar to synonyms of the concept
+            concept_syns.append([i.lemma_names() for i in syns])
+```
+
+All the identified sentences are replaced with block charcters and the method returns redacted data if **--concept** flag is passed from the command line or else it returns the unredacted data.
+
+#### ix. redactedDoc(message, out_path)
+
+This method takes data returned by the above and name of the redaction file as a tuple and also the output directory name or it's path to place the redacted files with an extension **.redacted**
+
+```python
+	redactDoc = open(
+        os.getcwd()+"/project_docs/{}/{}.redacted".format(out_path, message[1]), 'w')  # Opening a file
+    redactDoc.write(message[0])  # Writing a line to file
+    redactDoc.close()  # Closing the file
+```
+
+### 3. test_redactor.py

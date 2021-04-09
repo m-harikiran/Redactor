@@ -100,3 +100,48 @@ pattern = '\\b[+]?[0-9]{0,3}[ -]?[(]?[0-9]{3}[)]?[- ]?[0-9]{3}[- ]?[0-9]{4}\\b'
 ```
 
 All the identified dates are replacted with block charcter and the method returns redacted data if **--phone** flag is passed from the command line or else it returns the unredacted data.
+
+#### v. redactGender(data, args)
+
+This method takes data returned by the above and command line input parameters and redacts the gender related words using the below list of gender's list.
+
+```python
+gender_list = ['HE', 'SHE',	'HIM', 'HER', 'HIS', 'HERS', 'HIMSELF', 'HERSELF', 'BOYFRIEND',
+                   'GIRLFRIEND', 'HUSBAND', 'WIFE', 'SISTER', 'BROTHER', 'SON', 'DAUGHTER', 'GIRL',
+                   'BOY', 'MALE', 'FEMALE', 'MAN', 'MEN', 'WOMAN', 'WOMEN', 'MOTHER', 'FATHER']
+```
+
+All the identified gender words are replacted with block charcter and the method returns redacted data if **--genders** flag is passed from the command line or else it returns the unredacted data.
+
+#### v. redactNames(data, args)
+
+This method takes data returned by the above and command line input parameters and redacts the names which are identified using the nltk package.
+
+```python
+		tokenized_data = nltk.word_tokenize(data)       # Splitting data into words
+
+        # Generationg the parts of speech of each word
+        pos_tokenized_data = nltk.pos_tag(tokenized_data)
+
+        # Chunking the tagged words using named entity chunker
+        chk_tagged_tokens = nltk.chunk.ne_chunk(pos_tokenized_data)
+
+		for chk in chk_tagged_tokens.subtrees():
+            if chk.label().upper() == 'PERSON':  # Extracting the words with tag PERSON
+                # Extracting first and last name
+                name = ' '.join([i[0] for i in chk])
+```
+
+All the identified names are replacted with block charcter and the method returns redacted data if **--names** flag is passed from the command line or else it returns the unredacted data.
+
+#### vi. redactDates(data, args)
+
+This method takes data returned by the above and command line input parameters and redacts the dates which are identiffied using **commonregex** package.
+
+```python
+        parsed_data = CommonRegex(data)  # Parsing the data using common regex
+
+        matched_dates = parsed_data.dates  # Finding all the dates available in data
+```
+
+All the identified dates are replacted with block charcter and the method returns redacted data if **--dates** flag is passed from the command line or else it returns the unredacted data.

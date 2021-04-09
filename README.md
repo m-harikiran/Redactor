@@ -91,6 +91,16 @@ This method takes message to be appened in redaction status log and status log f
 
 This method takes all the arguments passed from command line as parameters and then extracts the input file names or pattern to identify the the input files using **glob** library. The data from each fille and its name is added to tuple and this is appended to a list containing the data of all the files. If a file cannot be read the status is updated in status log file. Finally a list containing the tuples of data from file and it's name is returned.
 
+```python
+	docs_list = nltk.flatten(args.input)
+    docs_data = []
+    for i in docs_list:
+        for j in glob.glob('project_docs/'+i):
+            if j[-4:] == '.txt':  # Verifying if the input file is text or not
+                # Reading data from text files and appending the tuple containing file data and its name
+                docs_data.append((open(j).read(), j[j.rfind('/')+1:-4]))
+```
+
 #### Iv. redactPhone(data, args)
 
 This method takes data from the file and command line input parameters and redacts the dates identified using the below regex pattern.
@@ -119,13 +129,10 @@ This method takes data returned by the above and command line input parameters a
 
 ```python
 		tokenized_data = nltk.word_tokenize(data)       # Splitting data into words
-
         # Generationg the parts of speech of each word
         pos_tokenized_data = nltk.pos_tag(tokenized_data)
-
         # Chunking the tagged words using named entity chunker
         chk_tagged_tokens = nltk.chunk.ne_chunk(pos_tokenized_data)
-
 		for chk in chk_tagged_tokens.subtrees():
             if chk.label().upper() == 'PERSON':  # Extracting the words with tag PERSON
                 # Extracting first and last name
@@ -170,3 +177,5 @@ This method takes data returned by the above and name of the redaction file as a
 ```
 
 ### 3. test_redactor.py
+
+The package **test_redactor.py** has test cases defined as methods, that can be used for unit testing of methods defined in the package **redactor.py**. In order to test each method in **redactor.py**, first we need to import **redactor.py**. I am using **assert** in python to verify if the test condition is true or not. If the condition returns FALSE then assert statement will fail, which inturns fails the test case.

@@ -1,6 +1,6 @@
 # Redaction of Sensitive Information
 
-#### Author: Harikiran Madishetti
+#### Author: Harikiran M
 
 ---
 
@@ -30,9 +30,9 @@ The below are the insturctions to be followed to download, install and run the p
 1. Create a directory and then cd into the directory
    **`mkdir Text_Project1 && cd Test_Project1`**
 2. Download the project files from GitHub
-   **`https://github.com/Harikiran-Madishetti/cs5293sp21-project1.git`**
+   **`git clone https://github.com/m-harikiran/Redactor.git`**
 3. Cd into project directory **cs5293sp21-project1**
-   **`cd cs5293sp21-project1`**
+   **`cd Redactor1`**
 4. Install python package pipenv to create a virtual enviromnent
    **`pip install pipenv`**
 5. After successfully installing pipenv create a python3 virtual environment
